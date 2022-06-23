@@ -10,7 +10,7 @@ import "./home.css";
 export default function Home() {
 
   const [data, setData] = useState(null);
-  const [darkStore, setDarkstore] = useState("all")
+  // const [darkStore, setDarkstore] = useState("all")
 
   useEffect(() => {
     csv(csvData).then(setData);
