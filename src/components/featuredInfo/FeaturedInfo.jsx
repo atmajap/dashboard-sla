@@ -9,7 +9,7 @@ export default function FeaturedInfo() {
         <div className="featuredSLAContainer">
           <span className="featuredSLA">2:13</span>
           <span className="featuredSLARate">
-            +0:13 <ArrowDownward className="featuredIcon negative"/>
+            +0:13 <ArrowUpward className="featuredIcon negative"/>
           </span>
         </div>
         <span className="featuredSub">Compared to last week</span>
@@ -20,7 +20,7 @@ export default function FeaturedInfo() {
         <div className="featuredSLAContainer">
           <span className="featuredSLA">1:13</span>
           <span className="featuredSLARate">
-            -0:47 <ArrowUpward className="featuredIcon positive"/>
+            -0:47 <ArrowDownward className="featuredIcon positive"/>
           </span>
         </div>
         <span className="featuredSub">Compared to last week</span>
@@ -31,7 +31,7 @@ export default function FeaturedInfo() {
         <div className="featuredSLAContainer">
           <span className="featuredSLA">2:13</span>
           <span className="featuredSLARate">
-            +0:13 <ArrowDownward className="featuredIcon negative"/>
+            +0:13 <ArrowUpward className="featuredIcon negative"/>
           </span>
         </div>
         <span className="featuredSub">Compared to last week</span>
