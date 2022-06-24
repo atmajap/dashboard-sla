@@ -1,3 +1,7 @@
 .home{
   flex: 4;
 }
+.featuredInfos.after{
+  content: "";
+  clear: both;
+}

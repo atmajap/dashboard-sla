@@ -1,7 +1,8 @@
 .featured{
-  width: 100%;
+  width: 25%;
   display: flex;
   justify-content: space-between;
+  float: left;
 }
 
 .featuredItem{
@@ -15,7 +16,7 @@
 }
 
 .featuredTitle{
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .featuredSLAContainer{
