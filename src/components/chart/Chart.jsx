@@ -38,6 +38,8 @@ export default function Chart({title, data, xDataKey, yDataKey, grid}) {
           <Tooltip content={<CustomTooltip />}/>
           <Legend />
           <ReferenceLine y={120} label="Max SLA" stroke="red" strokeDasharray="5 5" />
+          <ReferenceLine x={"2022-06-29"} label="v1.1.1" stroke="green" strokeDasharray="5 5" />
+          <ReferenceLine x={"2022-07-05"} label="v1.2" stroke="green" strokeDasharray="5 5" />
           {grid && <CartesianGrid stroke="#dfdfdf" strokeDasharray="5 5"/>}
         </LineChart>
       </ResponsiveContainer>

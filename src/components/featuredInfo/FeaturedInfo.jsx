@@ -1,7 +1,7 @@
 import "./featuredInfo.css";
 import {ArrowDownward, ArrowUpward} from "@material-ui/icons";
 
-export default function FeaturedInfo({averageTime, numberofOrders, title}) {
+export default function FeaturedInfo({averageTime, numberOfOrders, lastWeekAverageTime, lastWeekNumberOfOrders, title}) {
   return (
     <div className="featured">
       <div className="featuredItem">
@@ -9,11 +9,14 @@ export default function FeaturedInfo({averageTime, numberofOrders, title}) {
         <div className="featuredSLAContainer">
           <span className="featuredSLA">{averageTime.toFixed(2)}</span>
           <span className="featuredSLARate">
-            {(averageTime - 120).toFixed(2)} {(averageTime - 120).toFixed(2) > 0 ? <ArrowUpward className="featuredIcon negative"/> : <ArrowDownward className="featuredIcon positive"/>}
+            {(averageTime - lastWeekAverageTime).toFixed(2)} {(averageTime - lastWeekAverageTime).toFixed(2) > 0 ? <ArrowUpward className="featuredIcon negative"/> : <ArrowDownward className="featuredIcon positive"/>}
           </span>
         </div>
-        <div className="featurednumberofOrders">{`Number of Orders: ${numberofOrders}`}</div>
-        <span className="featuredSub">Compared to 2 minutes SLA</span>
+        <div className="featuredNumberOfOrdersContainer">
+          <span className="featuresNumberOfOrders">{`This Week Number of Orders: ${numberOfOrders}`}</span>
+          <span className="featuredNumberOfOrdersRate">{(numberOfOrders - lastWeekNumberOfOrders)} {numberOfOrders - lastWeekNumberOfOrders > 0 ? <ArrowUpward className="featuredIcon positive"/> : <ArrowDownward className="featuredIcon negative"/>}</span>
+        </div>
+        <span className="featuredSub">Compared to last week average time</span>
       </div>
     </div>
   )

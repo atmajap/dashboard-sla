@@ -1,4 +1,3 @@
-import { count } from "d3";
 import moment from "moment";
 
 export function processRawToChart(data) {
@@ -6,10 +5,13 @@ export function processRawToChart(data) {
 
   data.map((datum) => {
     if (datum.completedAt) {
-      allTime[moment(datum.orderedAt).format('YYYY-MM-DD')] = {
-        duration: allTime[moment(datum.orderedAt).format('YYYY-MM-DD')] ? allTime[moment(datum.orderedAt).format('YYYY-MM-DD')]['duration'] +  moment(datum.completedAt) - moment(datum.orderedAt) : moment(datum.completedAt) - moment(datum.orderedAt),
-        count: allTime[moment(datum.orderedAt).format('YYYY-MM-DD')] ? allTime[moment(datum.orderedAt).format('YYYY-MM-DD')]['count'] + 1 : 1
-    }}
+      if (moment(datum.completedAt) - moment(datum.orderedAt) <= 600000) {
+        allTime[moment(datum.orderedAt).format('YYYY-MM-DD')] = {
+          duration: allTime[moment(datum.orderedAt).format('YYYY-MM-DD')] ? allTime[moment(datum.orderedAt).format('YYYY-MM-DD')]['duration'] +  moment(datum.completedAt) - moment(datum.orderedAt) : moment(datum.completedAt) - moment(datum.orderedAt),
+          count: allTime[moment(datum.orderedAt).format('YYYY-MM-DD')] ? allTime[moment(datum.orderedAt).format('YYYY-MM-DD')]['count'] + 1 : 1
+        }
+      }
+    }
   })
 
   const timeAverage = Object.keys(allTime).map((date) => ({
@@ -29,10 +31,12 @@ export function processRawToFeaturedInfo(data) {
   let allTime = {}
 
   data.map((datum) => {
-    if (datum.completedAt) { 
-      allTime = {
-        duration: allTime.duration ? allTime.duration +  moment(datum.completedAt) - moment(datum.orderedAt) : moment(datum.completedAt) - moment(datum.orderedAt),
-        count: allTime.count ? allTime.count + 1 : 1
+    if (datum.completedAt) {
+      if (moment(datum.completedAt) - moment(datum.orderedAt) <= 600000) {
+        allTime = {
+          duration: allTime.duration ? allTime.duration +  moment(datum.completedAt) - moment(datum.orderedAt) : moment(datum.completedAt) - moment(datum.orderedAt),
+          count: allTime.count ? allTime.count + 1 : 1
+        }
       }
     }
   })
@@ -41,4 +45,12 @@ export function processRawToFeaturedInfo(data) {
     averageTime: allTime.duration / allTime.count / 1000,
     orderCount: allTime.count
   }
+}
+
+export function processRawToTimeHist(data) {
+  let allTime = {}
+  data.map((datum) => (
+    allTime[moment(datum.orderedAt).startOf('hour').format('HH:mm:ss')] = allTime[moment(datum.orderedAt).startOf('hour').format('HH:mm:ss')] ? allTime[moment(datum.orderedAt).startOf('hour').format('HH:mm:ss')] + 1 : 1
+  ))
+  return allTime
 }
