@@ -23,4 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 
 # production data
-/src/results.csv
+/src/order.csv
+/src/lineItem.csv
